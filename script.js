@@ -8,25 +8,28 @@ function applyPreference() {
         greetingElement.textContent = "Welcome, ${storeName}!";
     }
     if (bgColor && fgColor) {
-        document.body.style.backgroundColor - bgColor;
+        document.body.style.backgroundColor = bgColor;
         document.body.style.color = fgColor;
     }
 }
 
-document.getElementById("preferences-form")?.addEventListener("submit", function (event) {
-    event.preventDefault();
+const form = document.getElementById("preferences-form");
+if (form) {
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    const username = document.getElementById("username")?.value;
-    const backgroundColor = document.getElementById("background-color")?.value;
-    const foregroundColor = document.getElementById("foreground-color")?.value;
+        const username = document.getElementById("username")?.value;
+        const backgroundColor = document.getElementById("background-color")?.value;
+        const foregroundColor = document.getElementById("foreground-color")?.value;
 
-    if (username) localStorage.setItem("username", username);
-    if (backgroundColor) localStorage.setItem("backgroundColor", backgroundColor);
-    if (foregroundColor) localStorage.setItem("foregroundColor", foregroundColor);
+        if (username) localStorage.setItem("username", username);
+        if (backgroundColor) localStorage.setItem("backgroundColor", backgroundColor);
+        if (foregroundColor) localStorage.setItem("foregroundColor", foregroundColor);
 
-    applyPreference();
+        applyPreference();
 
-    alert("Your preferences have been saved!");
-});
+        alert("Your preferences have been saved!");
+    });
+}
 
 applyPreference();
